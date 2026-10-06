@@ -26,7 +26,6 @@ export default function MissionVision() {
       ref={containerRef}
       className="relative w-full py-24 md:py-32 overflow-hidden bg-[#e0f7fa]" // Screenshot er moto light cyan background
     >
-      {/* Floating Parallax Environment Icons */}
       <motion.div style={{ y: yLeaf1 }} className="absolute left-[10%] top-[20%] text-[var(--color-primary)]/20 z-0">
         <Leaf size={64} className="rotate-45" />
       </motion.div>
