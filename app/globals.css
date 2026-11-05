@@ -2,20 +2,83 @@
 
 :root {
   --color-primary: #552382;
-  --color-primary-light: #733ab0;
+  --color-primary-light: #7a38bd;
+  --color-primary-dark: #2d0e4f;
   --color-accent: #c3ff00;
-  --color-accent-hover: #a3d900;
-  --color-text-main: #ffffff;
-  --color-text-muted: #e0e0e0;
-  --color-bg-base: #46147e; 
-  
-  --font-heading: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --color-accent-hover: #b0e600;
+  --color-accent-dim: rgba(195, 255, 0, 0.12);
+  --color-text-main: #f8fafc;
+  --color-text-muted: #cbd5e1;
+  --color-bg-base: #0b0514;
+  --color-bg-surface: #140824;
+  --color-bg-card: rgba(30, 12, 54, 0.7);
+  --color-border: rgba(122, 56, 189, 0.28);
+  --color-border-glow: rgba(195, 255, 0, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg-base);
+  color-scheme: dark;
 }
 
 body {
   background-color: var(--color-bg-base);
   color: var(--color-text-main);
-  font-family: var(--font-body);
   overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: #0b0514;
+}
+
+/* Glassmorphism token utilities */
+.glass-panel {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+}
+
+.glass-panel-glow {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 0 35px -5px rgba(195, 255, 0, 0.08);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 20%, #cbd5e1 70%, #c3ff00 120%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, #ffffff 0%, #c3ff00 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Scrollbar polish */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: #3b1763;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
 }

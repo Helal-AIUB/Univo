@@ -1,16 +1,19 @@
 import HeroSection from "@/components/sections/HeroSection";
 import MissionVision from "@/components/sections/MissionVision";
+import ImpactGrid from "@/components/sections/ImpactGrid";
 import Campaigns from "@/components/sections/Campaigns";
 import EventsTimeline from "@/components/sections/EventsTimeline";
-import Footer from "@/components/layout/Footer";
+import GetInvolvedSection from "@/components/sections/GetInvolvedSection";
 
 export default function Home() {
   return (
     <main className="w-full flex flex-col">
       <HeroSection />
       <MissionVision />
+      <ImpactGrid />
       <Campaigns />
       <EventsTimeline />
+      <GetInvolvedSection />
     </main>
   );
 }
