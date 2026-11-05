@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, ShieldCheck, Sparkles } from "lucide-react";
+import { Menu, X, ArrowUpRight, Shield, Heart } from "lucide-react";
 
 const navLinks = [
   { name: "About", href: "/about" },
@@ -22,13 +22,12 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 15);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -39,55 +38,60 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+      className={`fixed w-full top-0 z-50 transition-all duration-200 ${
         scrolled
-          ? "bg-[#0b0514]/90 backdrop-blur-xl border-b border-[var(--color-primary-light)]/25 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
-          : "bg-transparent border-b border-transparent py-5"
+          ? "bg-[#0b0514]/95 backdrop-blur-md border-b border-[var(--color-border)] py-2.5 shadow-lg"
+          : "bg-transparent border-b border-transparent py-3.5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          {/* Logo & Brand Identity */}
-          <Link href="/" className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded-lg p-1">
-            <div className="relative w-10 h-10 sm:w-11 sm:h-11 overflow-hidden transition-transform group-hover:scale-105 duration-300">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex justify-between items-center h-11">
+          {/* Brand Logo & Title */}
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-accent)] rounded-md"
+          >
+            <div className="relative w-8 h-8 overflow-hidden rounded-md flex-shrink-0 transition-transform group-hover:scale-105">
               <Image
                 src="/logo.png"
-                alt="UNIVO Environmental Movement Logo"
+                alt="UNIVO Logo"
                 fill
-                sizes="44px"
+                sizes="32px"
                 className="object-contain"
                 priority
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl sm:text-2xl font-black tracking-wider text-white group-hover:text-[var(--color-accent)] transition-colors font-[family-name:var(--font-heading)]">
+              <span className="text-base font-bold tracking-tight text-white group-hover:text-[var(--color-accent)] transition-colors leading-tight">
                 UNIVO
               </span>
-              <span className="text-[9px] uppercase tracking-[0.2em] text-[var(--color-text-muted)] group-hover:text-white transition-colors">
-                Land Rights Vanguard
+              <span className="text-[10px] text-[var(--color-text-muted)] tracking-normal leading-none font-medium">
+                Youth Land Rights Movement
               </span>
             </div>
           </Link>
 
-          {/* Desktop Nav Items */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2 bg-[var(--color-primary)]/20 p-1.5 rounded-full border border-[var(--color-primary-light)]/30 backdrop-blur-md">
+          {/* Clean Desktop Navigation Menu */}
+          <nav className="hidden md:flex items-center space-x-1 bg-[var(--color-bg-card)] px-2 py-1 rounded-full border border-[var(--color-border)] backdrop-blur-sm">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(link.href));
+              const isActive =
+                pathname === link.href ||
+                (link.href !== "/" && pathname?.startsWith(link.href));
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative px-4 py-2 rounded-full text-xs lg:text-sm font-semibold uppercase tracking-wider transition-all duration-200 ${
+                  className={`relative px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors ${
                     isActive
-                      ? "text-[#0b0514] font-bold"
+                      ? "text-[#0b0514] font-semibold"
                       : "text-[var(--color-text-muted)] hover:text-white"
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeNavIndicator"
-                      className="absolute inset-0 bg-[var(--color-accent)] rounded-full -z-10 shadow-[0_0_15px_rgba(195,255,0,0.3)]"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      className="absolute inset-0 bg-[var(--color-accent)] rounded-full -z-10"
+                      transition={{ type: "spring", stiffness: 450, damping: 35 }}
                     />
                   )}
                   {link.name}
@@ -96,14 +100,14 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Primary Action Button (Desktop) */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Action CTAs */}
+          <div className="hidden md:flex items-center gap-2.5">
             <Link
               href="/get-involved"
-              className="group relative inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[var(--color-accent)] text-[#0b0514] text-xs lg:text-sm font-black uppercase tracking-wider hover:bg-[var(--color-accent-hover)] transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(195,255,0,0.25)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-accent)]"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[var(--color-accent)] text-[#0b0514] text-xs font-semibold hover:bg-[var(--color-accent-hover)] transition-all active:scale-95 shadow-sm"
             >
               <span>Join Movement</span>
-              <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight size={14} />
             </Link>
           </div>
 
@@ -113,89 +117,51 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Close menu" : "Open navigation menu"}
               aria-expanded={isOpen}
-              className="p-2.5 rounded-full bg-[var(--color-primary)]/40 border border-[var(--color-primary-light)]/40 text-white hover:text-[var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] transition-colors"
+              className="p-2 rounded-lg bg-[var(--color-bg-card)] border border-[var(--color-border)] text-white hover:text-[var(--color-accent)] focus:outline-none transition-colors"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Full-Screen Mobile Drawer / Navigation */}
+      {/* Clean, Non-Oversized Mobile Drawer */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, clipPath: "circle(0% at 90% 4%)" }}
-            animate={{ opacity: 1, clipPath: "circle(150% at 90% 4%)" }}
-            exit={{ opacity: 0, clipPath: "circle(0% at 90% 4%)" }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 min-h-screen bg-[#0b0514] z-50 flex flex-col justify-between p-6 sm:p-8 md:hidden overflow-y-auto"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed inset-x-0 top-[57px] bg-[#0b0514]/98 border-b border-[var(--color-border)] backdrop-blur-xl px-5 py-6 flex flex-col gap-3 shadow-2xl"
           >
-            {/* Top Bar inside Menu */}
-            <div className="flex justify-between items-center border-b border-[var(--color-primary-light)]/20 pb-5">
-              <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
-                <Image
-                  src="/logo.png"
-                  alt="Univo Logo"
-                  width={38}
-                  height={38}
-                  className="object-contain"
-                />
-                <span className="text-xl font-black tracking-wider text-white">
-                  UNIVO
-                </span>
-              </Link>
-              <button
-                onClick={() => setIsOpen(false)}
-                aria-label="Close menu"
-                className="p-2.5 rounded-full bg-[var(--color-primary)]/40 text-white hover:text-[var(--color-accent)] border border-[var(--color-primary-light)]"
-              >
-                <X size={24} />
-              </button>
-            </div>
-
-            {/* Navigation Links */}
-            <div className="py-8 flex flex-col space-y-4">
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--color-accent)]">
-                Navigation
-              </span>
-              {navLinks.map((link, idx) => {
+            <div className="flex flex-col space-y-1">
+              {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
-                  <motion.div
+                  <Link
                     key={link.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.08 * idx, duration: 0.3 }}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                      isActive
+                        ? "bg-[var(--color-accent)] text-[#0b0514] font-semibold"
+                        : "text-[var(--color-text-muted)] hover:text-white hover:bg-[var(--color-bg-card)]"
+                    }`}
                   >
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`block text-3xl sm:text-4xl font-black uppercase tracking-tight py-2 transition-colors ${
-                        isActive
-                          ? "text-[var(--color-accent)]"
-                          : "text-white hover:text-[var(--color-accent)]"
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
-                  </motion.div>
+                    {link.name}
+                  </Link>
                 );
               })}
             </div>
 
-            {/* Bottom Actions & Manifesto Statement */}
-            <div className="border-t border-[var(--color-primary-light)]/30 pt-6 flex flex-col gap-4">
-              <div className="flex items-center gap-2 text-xs text-[var(--color-text-muted)]">
-                <ShieldCheck size={16} className="text-[var(--color-accent)]" />
-                <span>Defending Land Rights & Community Ecology</span>
-              </div>
+            <div className="pt-3 border-t border-[var(--color-border)] flex flex-col gap-2">
               <Link
                 href="/get-involved"
                 onClick={() => setIsOpen(false)}
-                className="w-full text-center py-4 rounded-full bg-[var(--color-accent)] text-[#0b0514] font-black uppercase tracking-wider text-sm shadow-[0_0_20px_rgba(195,255,0,0.3)] hover:bg-[var(--color-accent-hover)] transition-all"
+                className="w-full text-center py-2.5 rounded-lg bg-[var(--color-accent)] text-[#0b0514] font-semibold text-xs transition-all"
               >
-                Join the Movement
+                Join Movement
               </Link>
             </div>
           </motion.div>

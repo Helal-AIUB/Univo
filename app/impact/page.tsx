@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { TreePine, Scale, Users, Flame, ShieldCheck, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { TreePine, Scale, Users, Flame, ShieldCheck, CheckCircle2 } from "lucide-react";
 import { impactMetrics } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -12,99 +11,90 @@ export const metadata: Metadata = {
 export default function ImpactPage() {
   return (
     <main className="w-full flex flex-col bg-[#0b0514] text-white">
-      {/* Hero Header */}
-      <section className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[var(--color-primary-light)]/20 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[36rem] h-[36rem] rounded-full bg-[var(--color-primary)]/20 blur-[160px] pointer-events-none" />
+      {/* Header */}
+      <section className="py-12 sm:py-16 px-4 sm:px-6 border-b border-[var(--color-border)]">
+        <div className="max-w-6xl mx-auto">
+          <span className="pro-badge mb-3">
+            Auditable Outcomes
+          </span>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--color-primary-light)]/40 bg-[var(--color-primary)]/20 backdrop-blur-md mb-6">
-            <ShieldCheck size={16} className="text-[var(--color-accent)]" />
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--color-accent)]">
-              Auditable Outcomes
-            </span>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-[0.95] mb-6 font-[family-name:var(--font-heading)]">
-            Measurable Proof. <br />
-            <span className="text-[var(--color-accent)]">Uncompromising Transparency.</span>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">
+            Measurable Proof. <span className="text-[var(--color-accent)]">Uncompromising Transparency.</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-[var(--color-text-muted)] max-w-2xl leading-relaxed">
-            Univo holds a strict policy: we never publish speculative projections or fabricated achievements.
-            Every metric below is cataloged from field logs and community partner endorsements.
+          <p className="text-xs sm:text-sm text-[var(--color-text-muted)] max-w-xl leading-relaxed">
+            Univo holds a strict policy: every metric is verified from ground GPS logs, field registries, and partner community endorsements.
           </p>
         </div>
       </section>
 
-      {/* Main Impact Metrics Bento */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {impactMetrics.map((item, idx) => (
+      {/* Metrics Grid */}
+      <section className="py-12 sm:py-16 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {impactMetrics.map((item) => (
             <div
               key={item.label}
-              className="p-8 sm:p-10 rounded-3xl bg-[var(--color-primary)]/20 border border-[var(--color-primary-light)]/40 hover:border-[var(--color-accent)] transition-all duration-300 flex flex-col justify-between shadow-xl"
+              className="pro-card p-5 flex flex-col justify-between"
             >
               <div>
-                <span className="text-4xl sm:text-5xl font-black text-[var(--color-accent)] tracking-tighter mb-4 block font-[family-name:var(--font-heading)]">
+                <span className="text-2xl sm:text-3xl font-bold text-[var(--color-accent)] tracking-tight mb-2 block">
                   {item.value}
                 </span>
-                <h3 className="text-lg font-bold text-white uppercase tracking-tight mb-2">
+                <h3 className="text-sm font-semibold text-white mb-1">
                   {item.label}
                 </h3>
-                <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
+                <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">
                   {item.description}
                 </p>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-[var(--color-primary-light)]/20 flex items-center justify-between text-xs text-[var(--color-text-muted)]">
+              <div className="pt-4 mt-4 border-t border-[var(--color-border)] flex items-center justify-between text-[11px] text-[var(--color-text-muted)]">
                 <span>Verified Metric</span>
-                <CheckCircle2 size={16} className="text-[var(--color-accent)]" />
+                <CheckCircle2 size={13} className="text-[var(--color-accent)]" />
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Deep-Dive Operational Pillars */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-[var(--color-primary-light)]/20 bg-[#0e071a]">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl mb-12">
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--color-accent)] mb-2 block">
-              Governance Protocols
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">
+      {/* Governance Protocols */}
+      <section className="py-12 sm:py-16 px-4 sm:px-6 border-t border-[var(--color-border)] bg-[#0e071a]">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-xl mb-8">
+            <span className="pro-badge mb-2">Governance Framework</span>
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
               How We Maintain Credibility & Non-Partisanship
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-8 rounded-3xl bg-[var(--color-primary)]/15 border border-[var(--color-primary-light)]/30">
-              <Scale className="text-[var(--color-accent)] w-8 h-8 mb-4" />
-              <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="pro-card p-5">
+              <Scale className="text-[var(--color-accent)] w-6 h-6 mb-3" />
+              <h3 className="text-sm font-semibold text-white mb-1">
                 Independent Oversight
               </h3>
-              <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
+              <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">
                 Advisory board oversight from ecological research institutions ensures all advocacy is grounded in verified soil science.
               </p>
             </div>
 
-            <div className="p-8 rounded-3xl bg-[var(--color-primary)]/15 border border-[var(--color-primary-light)]/30">
-              <Users className="text-[var(--color-accent)] w-8 h-8 mb-4" />
-              <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-2">
+            <div className="pro-card p-5">
+              <Users className="text-[var(--color-accent)] w-6 h-6 mb-3" />
+              <h3 className="text-sm font-semibold text-white mb-1">
                 Grassroots Co-Creation
               </h3>
-              <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
-                Local farming cooperatives and flood victims directly determine where resources are concentrated, eliminating bureaucratic waste.
+              <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">
+                Local farming cooperatives and flood victims directly determine where resources are concentrated.
               </p>
             </div>
 
-            <div className="p-8 rounded-3xl bg-[var(--color-primary)]/15 border border-[var(--color-primary-light)]/30">
-              <Flame className="text-[var(--color-accent)] w-8 h-8 mb-4" />
-              <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-2">
+            <div className="pro-card p-5">
+              <Flame className="text-[var(--color-accent)] w-6 h-6 mb-3" />
+              <h3 className="text-sm font-semibold text-white mb-1">
                 Rapid Logistics
               </h3>
-              <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
-                Emergency kits and sapling supplies are dispatched through decentralized student nodes within 48 hours of seasonal flash disasters.
+              <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">
+                Emergency kits and saplings are dispatched through decentralized student nodes within 48 hours of seasonal flash disasters.
               </p>
             </div>
           </div>
@@ -113,4 +103,3 @@ export default function ImpactPage() {
     </main>
   );
 }
-

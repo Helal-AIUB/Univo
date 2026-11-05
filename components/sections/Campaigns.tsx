@@ -2,127 +2,111 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight, MapPin, Tag } from "lucide-react";
 import { initiativesData } from "@/lib/data";
 
 export default function Campaigns() {
   return (
-    <section className="relative w-full bg-[#0b0514] text-white py-24 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[var(--color-primary-light)]/20">
-      
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/2 right-[-10%] w-[36rem] h-[36rem] rounded-full bg-[var(--color-primary)]/20 blur-[150px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto">
+    <section className="py-16 md:py-24 bg-[#0e071a] text-white border-b border-[var(--color-border)]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 md:mb-20 gap-6 border-b border-[var(--color-primary-light)]/20 pb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-6 border-b border-[var(--color-border)]">
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-8 h-[2px] bg-[var(--color-accent)]" />
-              <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-[var(--color-accent)]">
-                Active Ground Deployments
-              </span>
-            </div>
-            
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-white font-[family-name:var(--font-heading)]">
-              Frontline <span className="text-[var(--color-accent)]">Missions</span>
+            <span className="pro-badge mb-2">
+              Active Deployments
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              Frontline environmental initiatives.
             </h2>
-            
-            <p className="text-sm sm:text-base text-[var(--color-text-muted)] max-w-xl mt-3">
-              Direct intervention where environmental vulnerability meets marginalized community livelihoods.
+            <p className="text-xs sm:text-sm text-[var(--color-text-muted)] max-w-xl mt-1">
+              Direct community intervention tackling delta vulnerability, soil degradation, and flash disasters.
             </p>
           </div>
-          
+
           <Link
             href="/initiatives"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--color-primary-light)]/60 text-white font-bold uppercase tracking-wider text-xs sm:text-sm hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all shrink-0"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--color-accent)] hover:text-white transition-colors shrink-0"
           >
             <span>View All Initiatives</span>
-            <ArrowRight size={16} />
+            <ArrowRight size={14} />
           </Link>
         </div>
 
-        {/* Dynamic Project Showcase Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {initiativesData.slice(0, 2).map((item, idx) => {
+        {/* Initiatives Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {initiativesData.slice(0, 2).map((item) => {
             const hasFunding = item.raised && item.target;
             const progress = hasFunding ? Math.min(100, Math.round((item.raised! / item.target!) * 100)) : 0;
 
             return (
-              <motion.article
+              <article
                 key={item.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: idx * 0.15 }}
-                className="group relative flex flex-col justify-between bg-[var(--color-primary)]/15 border border-[var(--color-primary-light)]/30 hover:border-[var(--color-accent)] rounded-3xl overflow-hidden transition-all duration-500 shadow-2xl hover:shadow-[0_15px_40px_rgba(195,255,0,0.12)] backdrop-blur-md"
+                className="pro-card-interactive flex flex-col justify-between overflow-hidden"
               >
                 <div>
-                  {/* Image Container with Badges */}
-                  <div className="relative h-64 sm:h-72 w-full overflow-hidden">
+                  <div className="relative h-48 sm:h-56 w-full overflow-hidden">
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0e071a] via-[#0e071a]/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0e071a] via-[#0e071a]/40 to-transparent" />
 
-                    <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
-                      <span className="px-3.5 py-1 rounded-full bg-[#0b0514]/80 backdrop-blur-md border border-[var(--color-primary-light)]/40 text-[11px] font-bold uppercase tracking-wider text-[var(--color-accent)]">
+                    <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider bg-black/70 backdrop-blur-xs text-[var(--color-accent)] border border-white/10">
                         {item.category}
                       </span>
-                      <span className="px-3 py-1 rounded-full bg-[var(--color-accent)] text-[#0b0514] text-[11px] font-black uppercase tracking-wider">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider bg-[var(--color-accent)] text-[#0b0514]">
                         {item.status}
                       </span>
                     </div>
 
-                    <div className="absolute bottom-4 left-4 z-10 flex items-center gap-1.5 text-xs text-white/90 bg-[#0b0514]/70 px-3 py-1 rounded-full border border-white/10 backdrop-blur-sm">
-                      <MapPin size={13} className="text-[var(--color-accent)]" />
+                    <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1 text-[11px] text-white/90 bg-black/60 px-2 py-0.5 rounded backdrop-blur-xs">
+                      <MapPin size={11} className="text-[var(--color-accent)]" />
                       <span>{item.location}</span>
                     </div>
                   </div>
 
-                  {/* Body Content */}
-                  <div className="p-6 sm:p-8">
-                    <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white mb-3 group-hover:text-[var(--color-accent)] transition-colors">
+                  <div className="p-5">
+                    <h3 className="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
                       {item.title}
                     </h3>
-                    
-                    <p className="text-sm text-[var(--color-text-muted)] leading-relaxed mb-6">
+
+                    <p className="text-xs text-[var(--color-text-muted)] leading-relaxed mb-4 line-clamp-2">
                       {item.summary}
                     </p>
 
-                    {/* Progress Bar (if targeted) */}
+                    {/* Progress Bar */}
                     {hasFunding && (
-                      <div className="mb-6 p-4 rounded-2xl bg-[#0b0514]/60 border border-[var(--color-primary-light)]/20">
-                        <div className="flex justify-between items-center text-xs font-bold uppercase mb-2">
+                      <div className="mb-4 p-3 rounded-lg bg-[var(--color-bg-base)] border border-[var(--color-border)]">
+                        <div className="flex justify-between items-center text-[11px] font-semibold mb-1.5">
                           <span className="text-[var(--color-text-muted)]">Verified Fund Mobilization</span>
                           <span className="text-[var(--color-accent)]">{progress}%</span>
                         </div>
-                        <div className="h-2 w-full bg-[var(--color-primary)]/40 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-[var(--color-accent)] rounded-full transition-all duration-1000 shadow-[0_0_10px_var(--color-accent)]" 
-                            style={{ width: `${progress}%` }} 
+                        <div className="h-1.5 w-full bg-[var(--color-border)] rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-[var(--color-accent)] rounded-full"
+                            style={{ width: `${progress}%` }}
                           />
                         </div>
-                        <div className="flex justify-between items-center text-xs mt-2 text-[var(--color-text-muted)]">
+                        <div className="flex justify-between items-center text-[10px] mt-1.5 text-[var(--color-text-muted)]">
                           <span>Raised: ৳{item.raised?.toLocaleString()}</span>
                           <span>Target: ৳{item.target?.toLocaleString()}</span>
                         </div>
                       </div>
                     )}
 
-                    {/* Key Metrics Strip */}
-                    <div className="grid grid-cols-3 gap-2 border-t border-[var(--color-primary-light)]/20 pt-4">
+                    {/* Metrics */}
+                    <div className="grid grid-cols-3 gap-2 border-t border-[var(--color-border)] pt-3">
                       {item.metrics.map((m) => (
-                        <div key={m.label} className="text-center sm:text-left">
-                          <span className="text-sm sm:text-base font-black text-white block">
+                        <div key={m.label}>
+                          <span className="text-xs sm:text-sm font-bold text-white block">
                             {m.value}
                           </span>
-                          <span className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-wider block">
+                          <span className="text-[10px] text-[var(--color-text-subtle)] uppercase block">
                             {m.label}
                           </span>
                         </div>
@@ -131,17 +115,16 @@ export default function Campaigns() {
                   </div>
                 </div>
 
-                {/* Footer Action */}
-                <div className="px-6 sm:px-8 pb-6 pt-2">
+                <div className="px-5 pb-5 pt-0">
                   <Link
                     href={`/initiatives/${item.slug}`}
-                    className="w-full flex items-center justify-between p-4 rounded-2xl bg-[var(--color-primary)]/30 border border-[var(--color-primary-light)]/40 text-white font-bold uppercase text-xs tracking-wider group-hover:bg-[var(--color-accent)] group-hover:text-[#0b0514] group-hover:border-[var(--color-accent)] transition-all duration-300"
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-[var(--color-bg-base)] border border-[var(--color-border)] text-white text-xs font-semibold hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
                   >
-                    <span>Inspect Case Study & Field Data</span>
-                    <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <span>Read Field Case Study</span>
+                    <ArrowUpRight size={14} />
                   </Link>
                 </div>
-              </motion.article>
+              </article>
             );
           })}
         </div>

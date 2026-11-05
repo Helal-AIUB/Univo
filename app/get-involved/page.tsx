@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, CheckCircle2, ShieldCheck, HeartHandshake, Users, Sparkles } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, ShieldCheck, Users } from "lucide-react";
 
 export default function GetInvolvedPage() {
   const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ export default function GetInvolvedPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.phone) {
-      setError("Please complete all required fields.");
+      setError("Please fill out all required fields.");
       return;
     }
     setError("");
@@ -27,65 +27,58 @@ export default function GetInvolvedPage() {
 
   return (
     <main className="w-full flex flex-col bg-[#0b0514] text-white">
-      {/* Hero Header */}
-      <section className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-[var(--color-primary-light)]/20 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[36rem] h-[36rem] rounded-full bg-[var(--color-accent)]/10 blur-[160px] pointer-events-none" />
+      {/* Header */}
+      <section className="py-12 sm:py-16 px-4 sm:px-6 border-b border-[var(--color-border)]">
+        <div className="max-w-6xl mx-auto">
+          <span className="pro-badge mb-3">
+            Mobilize With Univo
+          </span>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--color-primary-light)]/40 bg-[var(--color-primary)]/20 backdrop-blur-md mb-6">
-            <Users size={16} className="text-[var(--color-accent)]" />
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--color-accent)]">
-              Mobilize With Univo
-            </span>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-[0.95] mb-6 font-[family-name:var(--font-heading)]">
-            Step Up. <br />
-            <span className="text-[var(--color-accent)]">Become A Vanguard.</span>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">
+            Step Up. <span className="text-[var(--color-accent)]">Become A Vanguard.</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-[var(--color-text-muted)] max-w-2xl leading-relaxed">
-            Join thousands of students, researchers, and community organizers dedicating their skills
-            to defending endangered soil and leading real-time climate action.
+          <p className="text-xs sm:text-sm text-[var(--color-text-muted)] max-w-xl leading-relaxed">
+            Join thousands of students and community organizers dedicating their skills to defending endangered soil and leading climate action.
           </p>
         </div>
       </section>
 
-      {/* Application Form & Roles */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+      {/* Form & Tracks */}
+      <section className="py-12 sm:py-16 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
           
-          {/* Volunteer / Partner Form */}
+          {/* Volunteer Form */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-12 rounded-3xl bg-[var(--color-primary)]/20 border border-[var(--color-primary-light)]/40 backdrop-blur-xl shadow-2xl">
-              <span className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)] mb-2 block">
-                Official Application
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white mb-6">
-                Register Your Commitment
+            <div className="pro-card p-6 sm:p-8">
+              <h2 className="text-lg font-bold text-white mb-1">
+                Volunteer Registration
               </h2>
+              <p className="text-xs text-[var(--color-text-muted)] mb-6">
+                Fill in your details to connect with your local district coordinator.
+              </p>
 
               {submitted ? (
-                <div className="p-8 rounded-2xl bg-[var(--color-accent)]/15 border border-[var(--color-accent)]/40 text-center flex flex-col items-center">
-                  <CheckCircle2 size={48} className="text-[var(--color-accent)] mb-4" />
-                  <h3 className="text-xl font-bold uppercase tracking-wider text-white mb-2">
-                    Application Received, Vanguard!
+                <div className="p-6 rounded-xl bg-[var(--color-accent-dim)] border border-[var(--color-accent)]/30 text-center flex flex-col items-center">
+                  <CheckCircle2 size={36} className="text-[var(--color-accent)] mb-3" />
+                  <h3 className="text-base font-bold text-white mb-1">
+                    Application Received!
                   </h3>
-                  <p className="text-sm text-[var(--color-text-muted)] max-w-md">
-                    Our regional organizing team for {formData.region} will review your application and contact you at {formData.email} within 48 hours.
+                  <p className="text-xs text-[var(--color-text-muted)] max-w-sm">
+                    Our regional organizing team for {formData.region} will review your application and reach out to {formData.email}.
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   {error && (
-                    <div className="p-4 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 text-sm">
+                    <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs">
                       {error}
                     </div>
                   )}
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
+                      <label className="block text-[11px] font-semibold text-[var(--color-text-muted)] mb-1">
                         Full Name *
                       </label>
                       <input
@@ -94,12 +87,12 @@ export default function GetInvolvedPage() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Tanvir Ahmed"
-                        className="w-full bg-[#0b0514] border border-[var(--color-primary-light)]/40 rounded-2xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-[var(--color-accent)]"
+                        className="w-full bg-[#0b0514] border border-[var(--color-border)] rounded-lg px-3.5 py-2 text-xs text-white focus:outline-none focus:border-[var(--color-accent)]"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
+                      <label className="block text-[11px] font-semibold text-[var(--color-text-muted)] mb-1">
                         Email Address *
                       </label>
                       <input
@@ -107,15 +100,15 @@ export default function GetInvolvedPage() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="e.g. tanvir@univo.org"
-                        className="w-full bg-[#0b0514] border border-[var(--color-primary-light)]/40 rounded-2xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-[var(--color-accent)]"
+                        placeholder="e.g. tanvir@domain.com"
+                        className="w-full bg-[#0b0514] border border-[var(--color-border)] rounded-lg px-3.5 py-2 text-xs text-white focus:outline-none focus:border-[var(--color-accent)]"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
+                      <label className="block text-[11px] font-semibold text-[var(--color-text-muted)] mb-1">
                         Contact Phone *
                       </label>
                       <input
@@ -124,18 +117,18 @@ export default function GetInvolvedPage() {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+880 1700 000000"
-                        className="w-full bg-[#0b0514] border border-[var(--color-primary-light)]/40 rounded-2xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-[var(--color-accent)]"
+                        className="w-full bg-[#0b0514] border border-[var(--color-border)] rounded-lg px-3.5 py-2 text-xs text-white focus:outline-none focus:border-[var(--color-accent)]"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
-                        Preferred Region / Chapter
+                      <label className="block text-[11px] font-semibold text-[var(--color-text-muted)] mb-1">
+                        Regional Chapter
                       </label>
                       <select
                         value={formData.region}
                         onChange={(e) => setFormData({ ...formData, region: e.target.value })}
-                        className="w-full bg-[#0b0514] border border-[var(--color-primary-light)]/40 rounded-2xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-[var(--color-accent)]"
+                        className="w-full bg-[#0b0514] border border-[var(--color-border)] rounded-lg px-3.5 py-2 text-xs text-white focus:outline-none focus:border-[var(--color-accent)]"
                       >
                         <option value="Dhaka">Dhaka Central Chapter</option>
                         <option value="Sylhet">Sylhet & Sunamganj Basin</option>
@@ -147,87 +140,86 @@ export default function GetInvolvedPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
+                    <label className="block text-[11px] font-semibold text-[var(--color-text-muted)] mb-1">
                       Involvement Track
                     </label>
                     <select
                       value={formData.role}
                       onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                      className="w-full bg-[#0b0514] border border-[var(--color-primary-light)]/40 rounded-2xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-[var(--color-accent)]"
+                      className="w-full bg-[#0b0514] border border-[var(--color-border)] rounded-lg px-3.5 py-2 text-xs text-white focus:outline-none focus:border-[var(--color-accent)]"
                     >
-                      <option value="Field Volunteer">Frontline Field Volunteer (Tree Planting / Relief)</option>
+                      <option value="Field Volunteer">Frontline Volunteer (Tree Planting / Relief)</option>
                       <option value="Soil & Bio Researcher">Soil Ecology & Bio-Testing Volunteer</option>
                       <option value="Campus Chapter Organizer">University / Campus Chapter Lead</option>
-                      <option value="Media & Documentation">Field Photographer & Drone Documentarian</option>
-                      <option value="Institutional Partner">Institutional / NGO Partner Representative</option>
+                      <option value="Media & Documentation">Field Photographer & Documentarian</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
-                      Why do you want to defend the land with Univo?
+                    <label className="block text-[11px] font-semibold text-[var(--color-text-muted)] mb-1">
+                      Brief Message or Motivation
                     </label>
                     <textarea
-                      rows={4}
+                      rows={3}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Tell us briefly about your background or why soil and environmental defense matters to you..."
-                      className="w-full bg-[#0b0514] border border-[var(--color-primary-light)]/40 rounded-2xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-[var(--color-accent)]"
+                      placeholder="Why does soil and environmental defense matter to you?"
+                      className="w-full bg-[#0b0514] border border-[var(--color-border)] rounded-lg px-3.5 py-2 text-xs text-white focus:outline-none focus:border-[var(--color-accent)]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-full bg-[var(--color-accent)] text-[#0b0514] font-black uppercase text-sm tracking-wider hover:bg-[var(--color-accent-hover)] transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_rgba(195,255,0,0.3)] flex items-center justify-center gap-2"
+                    className="w-full py-2.5 rounded-lg bg-[var(--color-accent)] text-[#0b0514] font-semibold text-xs hover:bg-[var(--color-accent-hover)] transition-all flex items-center justify-center gap-1.5 shadow-sm"
                   >
                     <span>Submit Volunteer Registration</span>
-                    <ArrowUpRight size={18} />
+                    <ArrowUpRight size={14} />
                   </button>
                 </form>
               )}
             </div>
           </div>
 
-          {/* Pillars of Engagement */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <div className="p-8 rounded-3xl bg-[var(--color-primary)]/15 border border-[var(--color-primary-light)]/30">
-              <span className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)] mb-3 block">
+          {/* Engagement Tracks */}
+          <div className="lg:col-span-5 flex flex-col gap-4">
+            <div className="pro-card p-5">
+              <span className="text-[10px] font-bold text-[var(--color-accent)] uppercase tracking-wider block mb-1">
                 Track 01
               </span>
-              <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-2">
+              <h3 className="text-sm font-bold text-white mb-1">
                 Ground Deployment Units
               </h3>
-              <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
-                Take part in weekend sapling campaigns, estuary water salinity checks, and emergency relief supply chains.
+              <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">
+                Join weekend mangrove planting campaigns, estuary salinity monitoring, and emergency relief distribution.
               </p>
             </div>
 
-            <div className="p-8 rounded-3xl bg-[var(--color-primary)]/15 border border-[var(--color-primary-light)]/30">
-              <span className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)] mb-3 block">
+            <div className="pro-card p-5">
+              <span className="text-[10px] font-bold text-[var(--color-accent)] uppercase tracking-wider block mb-1">
                 Track 02
               </span>
-              <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-2">
+              <h3 className="text-sm font-bold text-white mb-1">
                 Campus Chapter Leadership
               </h3>
-              <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
-                Lead student strikes, organize environmental policy symposiums, and mobilize youth peers on university campuses.
+              <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">
+                Lead student strikes, organize campus policy symposiums, and mobilize youth peers on university campuses.
               </p>
             </div>
 
-            <div className="p-8 rounded-3xl bg-[var(--color-primary)]/15 border border-[var(--color-primary-light)]/30">
-              <span className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)] mb-3 block">
+            <div className="pro-card p-5">
+              <span className="text-[10px] font-bold text-[var(--color-accent)] uppercase tracking-wider block mb-1">
                 Track 03
               </span>
-              <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-2">
-                Soil Science & Lab Research
+              <h3 className="text-sm font-bold text-white mb-1">
+                Soil Ecology & Field Testing
               </h3>
-              <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
+              <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">
                 Work alongside our advisory board to conduct organic bio-fertilizer assays and sample soil health across coastal zones.
               </p>
             </div>
 
-            <div className="p-6 rounded-3xl bg-[#0e071a] border border-[var(--color-primary-light)]/30 flex items-center gap-4 text-xs text-[var(--color-text-muted)]">
-              <ShieldCheck className="text-[var(--color-accent)] w-8 h-8 shrink-0" />
+            <div className="p-3.5 rounded-xl bg-[var(--color-bg-card)] border border-[var(--color-border)] flex items-center gap-3 text-xs text-[var(--color-text-muted)]">
+              <ShieldCheck className="text-[var(--color-accent)] w-5 h-5 shrink-0" />
               <span>All volunteer hours earn official certified Univo Environmental Vanguard credentials.</span>
             </div>
           </div>
@@ -237,4 +229,3 @@ export default function GetInvolvedPage() {
     </main>
   );
 }
-
