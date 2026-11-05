@@ -1,96 +1,85 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Leaf, Droplets, Target, ShieldCheck } from "lucide-react";
+import { Droplets, Leaf, ShieldCheck } from "lucide-react";
 
 const milestones = [
   {
     year: "The Crisis",
     title: "Vulnerable Frontlines & Soil Degradation",
     description:
-      "Rapid industrialization, excessive chemical salinity in delta rivers, and climate-induced flooding have critically damaged fertile soil top layers across Bangladesh, endangering both biodiversity and food security.",
+      "Rapid industrialization, excessive chemical salinity in delta rivers, and climate-induced flooding have critically damaged fertile topsoil across coastal Bangladesh.",
     icon: Droplets,
   },
   {
     year: "The Spark",
     title: "A Youth-Driven Counterforce",
     description:
-      "Founded by passionate students and climate researchers, Univo was established to replace passive climate concern with direct, structured, and auditable community intervention.",
+      "Founded by students and ecological researchers, Univo was established to replace passive climate concern with direct, structured, and auditable community intervention.",
     icon: Leaf,
   },
   {
     year: "The Mission",
     title: "Soil Rights & Generational Defense",
     description:
-      "We believe land and soil rights are human rights. We empower youth with field equipment, ecological training, and rapid response networks to protect our collective ecosystem.",
+      "We believe land and soil rights are human rights. We empower youth with field equipment, ecological training, and rapid response networks.",
     icon: ShieldCheck,
   },
 ];
 
 export default function OriginStory() {
   return (
-    <section className="relative w-full py-16 md:py-28 bg-[var(--color-bg-base)] text-[var(--color-text-main)] border-t border-[var(--color-primary-light)]/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+    <section className="py-14 sm:py-20 bg-[var(--color-bg-base)] text-[var(--color-text-main)] border-b border-[var(--color-border)]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
           
-          {/* Sticky Left Column */}
-          <div className="lg:w-5/12">
-            <div className="lg:sticky lg:top-32 flex flex-col items-start">
-              <span className="text-xs md:text-sm font-bold tracking-widest text-[var(--color-accent)] uppercase mb-3">
-                Why Univo Exists
+          <div className="lg:col-span-5">
+            <span className="pro-badge mb-2">Why Univo Exists</span>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">
+              From Crisis to <span className="text-[var(--color-accent)]">Collective Action</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed mb-6">
+              The earth beneath our feet is our ultimate defense against global climate collapse. 
+              When the soil deteriorates, life loses its anchor. Here is the trajectory of our movement.
+            </p>
+
+            <div className="p-4 rounded-xl bg-[var(--color-bg-card)] border border-[var(--color-border)]">
+              <span className="text-[11px] font-semibold text-[var(--color-accent)] uppercase tracking-wider block mb-1">
+                Core Mandate
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight leading-tight mb-6">
-                From Crisis to <br className="hidden sm:block" />
-                <span className="text-[var(--color-accent)]">Collective Action</span>
-              </h2>
-              <p className="text-[var(--color-text-muted)] text-sm sm:text-base leading-relaxed mb-6">
-                The earth beneath our feet is our ultimate defense against global climate collapse. 
-                When the soil deteriorates, life loses its anchor. Here is the trajectory of our movement.
+              <p className="text-xs text-white">
+                Zero compromise on environmental defense. Direct frontline presence in vulnerable districts.
               </p>
-              <div className="p-5 rounded-2xl bg-[var(--color-primary)]/40 border border-[var(--color-primary-light)] backdrop-blur-md">
-                <p className="text-xs font-bold text-[var(--color-accent)] uppercase tracking-wider mb-1">
-                  Core Mandate
-                </p>
-                <p className="text-sm text-[var(--color-text-main)] font-semibold">
-                  Zero compromise on environmental defense. Direct frontline presence.
-                </p>
-              </div>
             </div>
           </div>
 
-          {/* Right Column: Narrative Steps */}
-          <div className="lg:w-7/12 flex flex-col gap-8 md:gap-12">
-            {milestones.map((item, idx) => {
+          <div className="lg:col-span-7 flex flex-col gap-4">
+            {milestones.map((item) => {
               const Icon = item.icon;
               return (
-                <motion.div
+                <div
                   key={item.year}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.6, delay: idx * 0.15 }}
-                  className="group relative p-6 sm:p-8 rounded-3xl bg-[var(--color-primary)] border border-[var(--color-primary-light)] hover:border-[var(--color-accent)] transition-all duration-500 shadow-xl hover:shadow-[0_10px_30px_rgba(195,255,0,0.1)]"
+                  className="pro-card p-5"
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-3.5 py-1 rounded-full bg-[var(--color-accent)]/15 text-[var(--color-accent)] text-xs font-bold uppercase tracking-wider border border-[var(--color-accent)]/30">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-bold text-[var(--color-accent)] uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--color-accent-dim)] border border-[var(--color-accent)]/20">
                       {item.year}
                     </span>
-                    <div className="p-2.5 rounded-xl bg-[var(--color-bg-base)] text-[var(--color-accent)]">
-                      <Icon size={20} />
-                    </div>
+                    <Icon size={16} className="text-[var(--color-accent)]" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight mb-3 group-hover:text-[var(--color-accent)] transition-colors">
+                  <h3 className="text-sm sm:text-base font-bold text-white mb-1.5">
                     {item.title}
                   </h3>
-                  <p className="text-[var(--color-text-muted)] text-sm sm:text-base leading-relaxed">
+                  <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">
                     {item.description}
                   </p>
-                </motion.div>
+                </div>
               );
             })}
           </div>
 
         </div>
+
       </div>
     </section>
   );
