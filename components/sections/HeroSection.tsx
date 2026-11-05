@@ -1,150 +1,87 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, ShieldCheck, Sprout, Sparkles, ArrowDown } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, ArrowRight, ShieldCheck, Sprout, Users, MapPin } from "lucide-react";
 import { impactMetrics } from "@/lib/data";
 
 export default function HeroSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
-
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden bg-[#0b0514] text-white px-4 sm:px-6 lg:px-8 pt-8 pb-14 border-b border-[var(--color-primary-light)]/20"
-    >
-      {/* Cinematic Ambient Gradient Mesh */}
-      <motion.div
-        style={{ y: backgroundY }}
-        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
-      >
-        <div className="absolute top-[-10%] right-[-5%] w-[42rem] h-[42rem] rounded-full bg-[var(--color-primary-light)] opacity-25 blur-[140px]" />
-        <div className="absolute bottom-[5%] left-[-10%] w-[38rem] h-[38rem] rounded-full bg-[var(--color-accent)] opacity-10 blur-[160px]" />
-        <div className="absolute top-[40%] left-[30%] w-[26rem] h-[26rem] rounded-full bg-[#3b1763] opacity-35 blur-[120px]" />
+    <section className="relative overflow-hidden bg-[#0b0514] text-white pt-10 pb-16 border-b border-[var(--color-border)]">
+      {/* Subtle ambient lighting */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-[var(--color-primary)] opacity-20 blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-0 left-10 w-72 h-72 rounded-full bg-[var(--color-accent)] opacity-5 blur-[120px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
-        {/* Subtle geometric line grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(122,56,189,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(122,56,189,0.06)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]" />
-      </motion.div>
-
-      {/* Main Hero Header */}
-      <motion.div
-        style={{ y: textY, opacity }}
-        className="relative z-10 max-w-7xl mx-auto w-full pt-10 sm:pt-16 flex flex-col items-start"
-      >
-        {/* Vanguard Eyebrow Tag */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[var(--color-primary-light)]/40 bg-[var(--color-primary)]/20 backdrop-blur-md mb-8"
-        >
-          <span className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse" />
-          <span className="text-[11px] sm:text-xs font-bold tracking-[0.25em] uppercase text-[var(--color-accent)]">
-            Youth Climate Vanguard • Defending Vulnerable Deltas
+        {/* Breadcrumb Eyebrow Badge */}
+        <div className="flex items-center gap-2 mb-5">
+          <span className="pro-badge">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]" />
+            Youth Climate Vanguard • Bangladesh
           </span>
-        </motion.div>
+        </div>
 
-        {/* Editorial Brutalist Typography */}
-        <motion.h1
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tighter leading-[0.92] mb-8 font-[family-name:var(--font-heading)]"
-        >
-          The Future Belongs <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-[var(--color-accent)]">
-            To Those Who Defend
-          </span>{" "}
-          <br />
-          <span className="text-[var(--color-accent)] underline decoration-[var(--color-primary-light)] decoration-4 underline-offset-8">
-            The Land.
-          </span>
-        </motion.h1>
+        {/* Clean, Proportionate Headline */}
+        <div className="max-w-3xl mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-[1.15] mb-4">
+            Defending soil health, protecting vulnerable deltas, and empowering{" "}
+            <span className="text-[var(--color-accent)]">youth climate action.</span>
+          </h1>
 
-        {/* Subtitle & Value Proposition */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.25 }}
-          className="flex flex-col md:flex-row md:items-center justify-between gap-8 w-full max-w-5xl mb-12"
-        >
-          <p className="text-base sm:text-lg md:text-xl text-[var(--color-text-muted)] leading-relaxed max-w-2xl font-normal">
-            Univo is an unapologetic, youth-led collective confronting land degradation,
-            soil salinity, and environmental injustice across Bangladesh&apos;s most vulnerable climate frontiers.
+          <p className="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed max-w-2xl font-normal">
+            Univo is a youth-led social movement combating soil salinity, riverbank erosion,
+            and environmental degradation across Bangladesh through auditable, grassroots community intervention.
           </p>
+        </div>
 
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-4 shrink-0">
-            <Link
-              href="/initiatives"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--color-accent)] text-[#0b0514] font-black text-sm uppercase tracking-wider hover:bg-[var(--color-accent-hover)] transition-all hover:scale-105 active:scale-95 shadow-[0_0_25px_rgba(195,255,0,0.3)]"
-            >
-              <span>Explore Initiatives</span>
-              <ArrowUpRight size={18} />
-            </Link>
-            
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-[var(--color-primary-light)]/60 bg-[var(--color-primary)]/20 text-white font-bold text-sm uppercase tracking-wider hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all backdrop-blur-md"
-            >
-              Our Manifesto
-            </Link>
+        {/* Action CTAs & Highlights */}
+        <div className="flex flex-wrap items-center gap-3 mb-12">
+          <Link
+            href="/get-involved"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-accent)] text-[#0b0514] text-xs sm:text-sm font-semibold hover:bg-[var(--color-accent-hover)] transition-all shadow-sm"
+          >
+            <span>Join The Movement</span>
+            <ArrowUpRight size={15} />
+          </Link>
+
+          <Link
+            href="/initiatives"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-bg-card)] border border-[var(--color-border)] text-white text-xs sm:text-sm font-medium hover:border-[var(--color-accent)] transition-colors"
+          >
+            <span>View Active Field Missions</span>
+            <ArrowRight size={15} />
+          </Link>
+
+          <div className="hidden sm:flex items-center gap-2 text-xs text-[var(--color-text-muted)] ml-3 pl-4 border-l border-[var(--color-border)]">
+            <ShieldCheck size={16} className="text-[var(--color-accent)] shrink-0" />
+            <span>100% Non-profit & youth-directed</span>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
 
-      {/* Verified Real-time Ground Impact Strip */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="relative z-10 max-w-7xl mx-auto w-full"
-      >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 rounded-3xl bg-[var(--color-primary)]/20 border border-[var(--color-primary-light)]/30 backdrop-blur-xl">
-          {impactMetrics.map((stat, idx) => (
+        {/* Key Metrics Banner (Clean, balanced grid like modern travel & civic dashboards) */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          {impactMetrics.map((stat) => (
             <div
               key={stat.label}
-              className={`p-3 sm:p-4 flex flex-col justify-between ${
-                idx !== impactMetrics.length - 1 ? "md:border-r border-[var(--color-primary-light)]/20" : ""
-              }`}
+              className="pro-card p-4 sm:p-5 flex flex-col justify-between"
             >
               <div>
-                <span className="text-2xl sm:text-3xl md:text-4xl font-black text-[var(--color-accent)] tracking-tight block font-[family-name:var(--font-heading)]">
+                <span className="text-xl sm:text-2xl font-bold text-white tracking-tight block">
                   {stat.value}
                 </span>
-                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white block mt-1">
+                <span className="text-xs font-semibold text-[var(--color-accent)] block mt-0.5">
                   {stat.label}
                 </span>
               </div>
-              <p className="text-[11px] text-[var(--color-text-muted)] mt-2 hidden sm:block line-clamp-2">
+              <p className="text-[11px] text-[var(--color-text-muted)] mt-2 line-clamp-2">
                 {stat.description}
               </p>
             </div>
           ))}
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="flex items-center justify-center pt-8">
-          <a
-            href="#mission"
-            aria-label="Scroll to mission section"
-            className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors"
-          >
-            <span>Scroll To Explore</span>
-            <ArrowDown size={14} className="animate-bounce" />
-          </a>
-        </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
